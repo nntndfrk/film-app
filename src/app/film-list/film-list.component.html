@@ -1,0 +1,28 @@
+
+<div class="container p-3">
+  <div class="container">
+    <div class="row">
+
+      <div
+        class="col-3 mt-2 mb-2"
+        [ngClass]="{
+          'col-3': (screenWidth >= 1200),
+          'col-4': (screenWidth >= 992 && screenWidth < 1200),
+          'col-6': (screenWidth >= 768 && screenWidth < 992 ),
+          'col-12': (screenWidth < 768)
+        }"
+        *ngFor="let film of films">
+        <app-film-item
+          [film]="film"
+          (makeBookmark)="bookmarkFilm($event)"
+          (makeFavorite)="starFilm($event)"
+        ></app-film-item>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="isLoad">
+  <app-spinner></app-spinner>
+</div>
+<app-load-more [totalPages]="totalPages" (pageEmitter)="getNextPage($event)"></app-load-more>
+

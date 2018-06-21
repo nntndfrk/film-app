@@ -1,0 +1,57 @@
+<div class="card">
+
+  <!-- Card image -->
+  <div class="view overlay view zoom">
+    <div class="view zoom">
+      <!--<img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20(7).jpg" class=" " alt="">-->
+      <img
+        class="card-img-top img-fluid"
+        src="{{buildImgUrl(people.profile_path)}}"
+        src-fallback="{{ 'http://placehold.it/500x750' }}"
+        alt="{{people.name}}">
+
+      <!--src="../../assets/unk.png"-->
+      <div class="mask flex-center">
+        <p class="white-text">Zoom effect</p>
+      </div>
+    </div>
+    <a href="#">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <!-- Card content -->
+  <div class="card-body">
+    <!-- Title -->
+    <h5 class="card-title">{{people.name}}</h5>
+    <!-- Text -->
+    <!--<p class="card-text">{{(film.overview.length < 240) ? film.overview : film.overview.substring(0,240) + '...'}}</p>-->
+    <hr>
+    <div class="d-flex flex-row justify-content-center">
+      <i
+        class="fa fa-star"
+        aria-hidden="true"
+        *ngFor="let i of popularityList"
+        [ngClass]="{
+        'fa-star': (i <= div(people.popularity)),
+        'fa-star-o': (i > div(people.popularity))
+        }"
+      ></i>
+    </div>
+    <hr>
+    <div class="d-flex flex-row justify-content-center">
+      <a class="btn btn-rounded btn-sm btn-mdb-color align-self-center mbtn" (click)="addToFavorite()">
+        <i class="fa  fa-bars" aria-hidden="true"></i>
+      </a>
+      <a class="btn btn-rounded btn-sm btn-mdb-color align-self-center mbtn" (click)="addToFavorite()">
+        <i class="fa  fa-star-o" aria-hidden="true"></i>
+      </a>
+      <a class="btn btn-rounded btn-sm btn-mdb-color align-self-center mbtn" (click)="addToFavorite()">
+        <i class="fa  fa-bookmark" aria-hidden="true"></i>
+      </a>
+
+    </div>
+
+  </div>
+
+</div>

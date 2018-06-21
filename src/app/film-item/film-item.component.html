@@ -1,0 +1,64 @@
+<div class="card">
+
+  <!-- Card image -->
+  <div class="view overlay view zoom">
+    <div class="view zoom">
+      <!--<img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20(7).jpg" class=" " alt="">-->
+      <img
+        class="card-img-top img-fluid"
+        src="{{buildImgUrl(film.poster_path)}}"
+        src-fallback="{{ 'http://placehold.it/500x750' }}"
+        alt="{{film.original_title}}">
+      <div class="mask flex-center">
+        <p class="white-text">Zoom effect</p>
+      </div>
+    </div>
+    <a href="#">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <!-- Card content -->
+  <div class="card-body">
+    <!-- Title -->
+    <h5 class="card-title">{{film.title}} - {{film.id}}</h5>
+    <h6 class="card-title">{{film.release_date | date}}</h6>
+    <!-- Text -->
+    <p class="card-text">{{(film.overview.length < 240) ? film.overview : film.overview.substring(0,240) + '...'}}</p>
+    <hr>
+    <div class="d-flex flex-row justify-content-center">
+      <i
+        class="fa"
+        aria-hidden="true"
+        *ngFor="let i of popularityList"
+        [ngClass]="{
+        'fa-star': (i <= div(film.popularity)),
+        'fa-star-o': (i > div(film.popularity))
+        }"
+      ></i>
+    </div>
+    <hr>
+    <div class="d-flex flex-row justify-content-center">
+      <a class="btn btn-rounded btn-sm btn-mdb-color align-self-center">
+        <i class="fa menu-button  fa-bars" aria-hidden="true"></i>
+      </a>
+      <a class="btn btn-rounded btn-sm btn-mdb-color align-self-center" (click)="addToFavorite()">
+        <i
+          class="fa star-button"
+          aria-hidden="true"
+          [ngClass]="{'fa-star-o': !film.isFavorite, 'fa-star': film.isFavorite}"
+        ></i>
+      </a>
+      <a class="btn btn-rounded btn-sm btn-mdb-color align-self-center" (click)="addToBookmarks()">
+        <i
+          class="fa bookmark-button"
+          aria-hidden="true"
+          [ngClass]="{'fa-bookmark-o': !film.isBookMarked, 'fa-bookmark': film.isBookMarked}"
+        ></i>
+      </a>
+
+    </div>
+
+  </div>
+
+</div>

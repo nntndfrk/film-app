@@ -1,0 +1,44 @@
+
+  <!--&lt;!&ndash;<div class="md-form form-sm">&ndash;&gt;-->
+    <!--&lt;!&ndash;<i class="fa fa-search prefix" aria-hidden="true"></i>&ndash;&gt;-->
+    <!--&lt;!&ndash;&ndash;&gt;-->
+    <!--&lt;!&ndash;<button class="btn btn-outline-success btn-sm my-0 waves-light" type="submit" mdbWavesEffect>Search</button>&ndash;&gt;-->
+    <!--&lt;!&ndash;&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--<form class="form-inline ml-auto">-->
+    <!--&lt;!&ndash;<i class="fa fa-search prefix" aria-hidden="true" size="2x"></i>&ndash;&gt;-->
+    <!--&lt;!&ndash;<mdb-icon icon="camera-retro" size="2x"></mdb-icon>&ndash;&gt;-->
+    <!--<div class="md-form mt-0">-->
+      <!--&lt;!&ndash;<input class="form-control mr-sm-2" type="text" ="Search" aria-label="Search">&ndash;&gt;-->
+      <!--<input-->
+        <!--mdbInputDirective-->
+        <!--type="text"-->
+        <!--id="form1"-->
+        <!--class="form-control mr-sm-2"-->
+        <!--#search-->
+        <!--(input)="onSearch(search.value)"-->
+      <!--&gt;-->
+      <!--<label for="form1" class="">Find Movies {{searchText}}</label>-->
+      <!--<button class="btn btn-outline-success btn-sm my-0 waves-light" type="submit" mdbWavesEffect>Search</button>-->
+    <!--</div>-->
+  <!--</form>-->
+  <form class="form-inline ml-auto">
+    <div class="md-form mt-0">
+      <input
+        mdbInputDirective
+        type="text"
+        name="searchText"
+        id="form1"
+        class="form-control mr-sm-2"
+        [(ngModel)]="searchText"
+        (keyup.enter)="onSearch()"
+      >
+      <label for="form1">Search Movie</label>
+      <button
+        class="btn btn-outline-success btn-sm my-0 waves-light"
+        type="submit"
+        mdbWavesEffect
+        (click)="onSearch()"
+      >Search</button>
+    </div>
+  </form>

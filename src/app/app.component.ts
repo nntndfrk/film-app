@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  links: object[] = [
+    { path: '/main', label: 'Discover', active: 'active'},
+    { path: '/films-list', label: 'Movies', active: 'active'},
+    { path: '/people-list', label: 'People', active: 'active'},
+    { path: '/about', label: 'About', active: 'active'},
+  ];
 }
