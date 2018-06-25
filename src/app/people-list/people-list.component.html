@@ -3,13 +3,17 @@
   <div class="container">
     <div class="row">
 
-      <div class="col-3 mt-2 mb-2"  *ngFor="let people of persons">
-        <app-people-item [people]="people"></app-people-item>
+      <div class="mt-2 mb-2" appResponsive *ngFor="let people of persons">
+        <app-people-item
+          [people]="people"
+          (makeFavorite)="starPerson($event)"
+        ></app-people-item>
       </div>
     </div>
   </div>
 
 </div>
-<app-load-more [allPage]="allPage" (pageEmitter)="getNextPage($event)"></app-load-more>
-
-<app-spinner></app-spinner>
+<div class="container" *ngIf="!isLoad">
+  <app-spinner></app-spinner>
+</div>
+<app-load-more [totalPages]="totalPages" (pageEmitter)="getNextPage($event)"></app-load-more>

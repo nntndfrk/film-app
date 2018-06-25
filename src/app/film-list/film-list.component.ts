@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit, HostListener} from '@angular/core';
 import {ApiService} from '../api.service';
-import {Film} from '../film';
-import {FilmData} from '../film-data';
 import {SearchService} from '../film-search/search.service';
 import {Subscription} from 'rxjs';
-import {FavoriteService} from './favorite.service';
+import {FavoriteService} from '../favorite.service';
+import {Film} from '../core/models/film';
+import {FilmData} from '../core/models/film-data';
 
 @Component({
   selector: 'app-film-list',
@@ -17,14 +17,8 @@ export class FilmListComponent implements OnInit, OnDestroy {
   favoriteList: Array<number>;
   bookmarksList: Array<number>;
   totalPages: number;
-  isLoad = true;
+  isLoad = false;
   subscription: Subscription;
-  screenWidth: any;
-
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    this.screenWidth = window.innerWidth;
-  }
 
   constructor(
     private apiService: ApiService,
@@ -34,11 +28,10 @@ export class FilmListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.screenWidth = window.innerWidth;
-    this.favoriteList = this.favoriteService.getFavorite();
-    this.bookmarksList = this.favoriteService.getBookmarks();
+    this.favoriteList = this.favoriteService.getFilmsFavorite();
+    this.bookmarksList = this.favoriteService.getFilmsBookmark();
     this.apiService.getPopularFilms(1).subscribe((data: FilmData) => {
-      this.isLoad = false;
+      this.isLoad = true;
       this.filmsData = data.results;
       this.films = [...this.filmsData];
       this.buildFavorites();
@@ -51,8 +44,8 @@ export class FilmListComponent implements OnInit, OnDestroy {
   }
 
   buildFavorites() {
-    this.favoriteList = this.favoriteService.getFavorite();
-    this.bookmarksList = this.favoriteService.getBookmarks();
+    this.favoriteList = this.favoriteService.getFilmsFavorite();
+    this.bookmarksList = this.favoriteService.getFilmsBookmark();
     this.films.map(film => {
       film.isFavorite = this.favoriteList.indexOf(film.id) > -1;
       film.isBookMarked = this.bookmarksList.indexOf(film.id) > -1;
@@ -70,9 +63,9 @@ export class FilmListComponent implements OnInit, OnDestroy {
   }
 
   getNextPage(pageNumber) {
-    this.isLoad = true;
+    this.isLoad = false;
     this.apiService.getPopularFilms(pageNumber).subscribe((data: FilmData) => {
-      this.isLoad = false;
+      this.isLoad = true;
       this.filmsData = [...this.filmsData, ...data.results];
       this.films = [...this.filmsData];
       this.buildFavorites();
@@ -81,9 +74,9 @@ export class FilmListComponent implements OnInit, OnDestroy {
 
   bookmarkFilm(id: number) {
     if (this.bookmarksList.indexOf(id) > -1) {
-      this.favoriteService.removeFromBookmarks(id);
+      this.favoriteService.removeFilmFromBookmarks(id);
     } else {
-      this.favoriteService.addToBookmarks(id);
+      this.favoriteService.addFilmToBookmarks(id);
     }
 
     this.buildFavorites();
@@ -91,9 +84,9 @@ export class FilmListComponent implements OnInit, OnDestroy {
 
   starFilm(id: number) {
     if (this.favoriteList.indexOf(id) > -1) {
-      this.favoriteService.removeFromFavorites(id);
+      this.favoriteService.removeFilmFromFavorites(id);
     } else {
-      this.favoriteService.addToFavorite(id);
+      this.favoriteService.addFilmToFavorite(id);
     }
 
     this.buildFavorites();

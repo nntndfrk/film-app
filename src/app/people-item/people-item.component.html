@@ -21,7 +21,10 @@
   </div>
 
   <!-- Card content -->
-  <div class="card-body">
+  <div
+    class="card-body"
+    [ngClass]="{'fav': people.isFavorite}"
+  >
     <!-- Title -->
     <h5 class="card-title">{{people.name}}</h5>
     <!-- Text -->
@@ -40,16 +43,16 @@
     </div>
     <hr>
     <div class="d-flex flex-row justify-content-center">
-      <a class="btn btn-rounded btn-sm btn-mdb-color align-self-center mbtn" (click)="addToFavorite()">
-        <i class="fa  fa-bars" aria-hidden="true"></i>
+      <a class="btn btn-rounded btn-sm btn-mdb-color align-self-center mbtn">
+        <i class="fa  fa-bars menu-button" aria-hidden="true"></i>
       </a>
       <a class="btn btn-rounded btn-sm btn-mdb-color align-self-center mbtn" (click)="addToFavorite()">
-        <i class="fa  fa-star-o" aria-hidden="true"></i>
+        <i
+          class="fa star-button"
+          aria-hidden="true"
+          [ngClass]="{'fa-star-o': !people.isFavorite, 'fa-star fav-ico': people.isFavorite}"
+        ></i>
       </a>
-      <a class="btn btn-rounded btn-sm btn-mdb-color align-self-center mbtn" (click)="addToFavorite()">
-        <i class="fa  fa-bookmark" aria-hidden="true"></i>
-      </a>
-
     </div>
 
   </div>

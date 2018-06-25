@@ -19,9 +19,12 @@
   </div>
 
   <!-- Card content -->
-  <div class="card-body">
+  <div
+    class="card-body"
+    [ngClass]="{'fav': film.isFavorite}"
+  >
     <!-- Title -->
-    <h5 class="card-title">{{film.title}} - {{film.id}}</h5>
+    <h5 class="card-title">{{film.title}}</h5>
     <h6 class="card-title">{{film.release_date | date}}</h6>
     <!-- Text -->
     <p class="card-text">{{(film.overview.length < 240) ? film.overview : film.overview.substring(0,240) + '...'}}</p>
@@ -46,7 +49,7 @@
         <i
           class="fa star-button"
           aria-hidden="true"
-          [ngClass]="{'fa-star-o': !film.isFavorite, 'fa-star': film.isFavorite}"
+          [ngClass]="{'fa-star-o': !film.isFavorite, 'fa-star fav-ico': film.isFavorite}"
         ></i>
       </a>
       <a class="btn btn-rounded btn-sm btn-mdb-color align-self-center" (click)="addToBookmarks()">

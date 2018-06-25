@@ -11,12 +11,11 @@ import {PeopleListComponent} from './people-list/people-list.component';
 import {PeopleItemComponent} from './people-item/people-item.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FilmSearchComponent} from './film-search/film-search.component';
-import {FooterComponent} from './footer/footer.component';
-import {LoadMoreComponent} from './load-more/load-more.component';
 import {HttpClientModule} from '@angular/common/http';
-import {SpinnerComponent} from './spinner/spinner.component';
 import {ImgFallbackModule} from 'ngx-img-fallback';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {SharedModule} from './shared/shared.module';
+import {CoreModule} from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -28,9 +27,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     PeopleListComponent,
     PeopleItemComponent,
     FilmSearchComponent,
-    FooterComponent,
-    LoadMoreComponent,
-    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +36,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     ImgFallbackModule,
+    CoreModule,
+    SharedModule
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [],

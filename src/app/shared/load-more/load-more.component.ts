@@ -20,11 +20,6 @@ export class LoadMoreComponent implements OnInit {
   getNextPage() {
     this.pageCounter += 1;
     this.pageEmitter.emit(this.pageCounter);
-    // if (this.pageCounter <= this.allPage) {
-    //   // this.pageEmitter.emit();
-    // } else {
-    //   this.end = false;
-    // }
   }
 
 }

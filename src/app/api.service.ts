@@ -1,11 +1,5 @@
 import {Injectable} from '@angular/core';
-// import {Film} from '../film';
-// import {SortOption} from '../sort-option';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {FilmData} from './film-data';
-import {Film} from './film';
-
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +18,6 @@ export class ApiService {
   bigBackPath: string = `${this.imgPath}/w1280`;
   midBackPath: string = `${this.imgPath}/w780`;
   smallBackPath: string = `${this.imgPath}/w300`;
-  films: Array<any>;
 
   constructor(private http: HttpClient) {
   }

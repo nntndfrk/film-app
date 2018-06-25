@@ -5,4 +5,5 @@ export class People {
   known_for: Object[];
   name: string;
   popularity: number;
+  isFavorite?: boolean;
 }

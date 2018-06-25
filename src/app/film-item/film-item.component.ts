@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output, OnInit, OnChanges} from '@angular/core';
 import {ApiService} from '../api.service';
-import {Film} from '../film';
+import {Film} from '../core/models/film';
 
 @Component({
   selector: 'app-film-item',

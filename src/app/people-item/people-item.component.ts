@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {People} from '../people';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ApiService} from '../api.service';
+import {People} from '../core/models/people';
 
 @Component({
   selector: 'app-people-item',
@@ -12,6 +12,8 @@ export class PeopleItemComponent implements OnInit {
   imgPath: string;
   midImgPath: string;
   popularityList = [1, 2, 3, 4, 5];
+
+  @Output() makeFavorite = new EventEmitter<number>();
 
   constructor(private apiService: ApiService) {
   }
@@ -31,6 +33,10 @@ export class PeopleItemComponent implements OnInit {
 
   setDefaultPic(pic) {
     return 'assets/images/my-image.png';
+  }
+
+  addToFavorite() {
+    this.makeFavorite.emit(this.people.id);
   }
 
 }
